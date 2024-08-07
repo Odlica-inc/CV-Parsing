@@ -13,8 +13,8 @@ Our CV parsing API achieves state-of-the-art accuarcy in CV parsing. Works on mu
 1. **Open the API through this link**: https://rapidapi.com/parsing-ai-parsing-ai-default/api/cv-parser
 
 #### Step 3: Subscribe to the API
-1. **Pricing**: Review the pricing plans available for the API. Some APIs offer free tiers, while others may require a paid subscription.
-2. **Subscribe**: Click on the subscription plan that fits your needs. You may need to provide payment information if you choose a paid plan.
+1. **Pricing**: Review the pricing plans available for the API: https://rapidapi.com/parsing-ai-parsing-ai-default/api/cv-parser/pricing
+3. **Subscribe**: Click on the subscription plan that fits your needs. You may need to provide payment information if you choose a paid plan.
 
 #### Step 4: Obtain API Credentials
 1. **Navigate to 'Endpoints'**: Once subscribed, go to the 'Endpoints' tab on the API's details page.
@@ -101,22 +101,30 @@ You can parse CVs with two different methods: by sending the file as a base64 st
         import os
 
 
+                
         drive_id = "1M..."
-
-        url = "https://cv-parser.p.rapidapi.com/parse"
-
-        payload = {
-          #the download link could be for any file ["pdf", "docx", "doc","png", "jpeg", "jpg"]
-
+        # Steps to get the drive id: 
+        # 1- upload the file on the drive 
+        # 2- open the file and press on share
+        # 3- Make the general access viewer or editor to anyone with the link 
+        # 4- copy the link and you can find the id here: https://drive.google.com/file/d/1M..../view..
         
-        # normal download link from drive
-          "file_url": f"https://drive.google.com/uc?export=download&id={drive_id}",
-
-          #export link for docx file as pdf
-          # "file_url": f"https://docs.google.com/document/d/{drive_id}/export?format=pdf",
-
-          "isbytes": False,
-          "file_type" : "pdf" #["pdf", "docx", "doc","png", "jpeg", "jpg"] pdf by default
+        
+        url = "https://cv-parser.p.rapidapi.com/parse"
+        
+        payload = {
+        	#the download link could be for any file ["pdf", "docx", "doc","png", "jpeg", "jpg"]
+        
+        
+         # normal download link from drive
+        	"file_url": f"https://drive.google.com/uc?export=download&id={drive_id}",
+        
+        	 #export link for docx file as pdf
+        	# "file_url": f"https://docs.google.com/document/d/{drive_id}/export?format=pdf",
+        	# Note: you can parse any public file with public links including s3 links
+         
+        	"isbytes": False,
+        	"file_type" : "pdf" #["pdf", "docx", "doc","png", "jpeg", "jpg"] pdf by default
         }
         headers = {
           "x-rapidapi-key": os.getenv("rapid_key"),
